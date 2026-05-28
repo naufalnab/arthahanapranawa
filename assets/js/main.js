@@ -14,16 +14,18 @@ document.getElementById("inquiry-form").addEventListener("submit", function (eve
     var category = form.elements.category.value.trim();
     var quantity = form.elements.quantity.value.trim();
     var delivery = form.elements.delivery.value.trim();
+    var requiredDate = form.elements["required-date"].value.trim();
     var message = form.elements.message.value.trim();
-    var subject = encodeURIComponent("Product inquiry from " + (company || name));
+    var subject = encodeURIComponent("Procurement inquiry from " + (company || name));
     var body = encodeURIComponent(
-        "Name: " + name + "\n" +
+        "Contact person: " + name + "\n" +
         "Company: " + (company || "-") + "\n" +
         "Email: " + email + "\n" +
         "Product category: " + (category || "-") + "\n" +
         "Quantity / volume: " + (quantity || "-") + "\n" +
-        "Delivery location: " + (delivery || "-") + "\n\n" +
-        "Product need:\n" + message
+        "Delivery location: " + (delivery || "-") + "\n" +
+        "Required by: " + (requiredDate || "-") + "\n\n" +
+        "Product need / spec:\n" + message
     );
 
     window.location.href = "mailto:sales@arthahanapranawa.com?subject=" + subject + "&body=" + body;
