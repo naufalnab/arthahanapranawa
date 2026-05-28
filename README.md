@@ -11,6 +11,10 @@ Static company website for PT. Artha Hana Pranawa, an authorized distributor for
 ├── .gitignore
 ├── .nojekyll               # Disables Jekyll on GitHub Pages
 ├── assets/
+│   ├── css/
+│   │   └── style.css       # All site styles
+│   ├── js/
+│   │   └── main.js         # Inquiry form and scrollspy
 │   └── images/             # Photography and illustrative assets
 │       ├── 01-warehouse.jpg
 │       ├── 02-stock.jpg

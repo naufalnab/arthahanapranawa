@@ -24,1556 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet">
-    <style>
-        :root {
-            --ink: #151718;
-            --muted: #515855;
-            --line: #dfe4df;
-            --surface: #ffffff;
-            --soft: #f5f7f4;
-            --soft-green: #e6f1e9;
-            --green: #177245;
-            --green-dark: #0d4f32;
-            --green-soft: #2a8b5c;
-            --amber: #b98721;
-            --charcoal: #202322;
-            --radius: 8px;
-            --shadow: 0 18px 50px rgba(20, 25, 23, 0.12);
-            --container: 1180px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            color: var(--ink);
-            background: var(--surface);
-            font-family: Inter, Arial, Helvetica, sans-serif;
-            font-size: 16.5px;
-            line-height: 1.7;
-            letter-spacing: 0;
-            overflow-x: hidden;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button,
-        input,
-        textarea {
-            font: inherit;
-        }
-
-        .container {
-            width: calc(100% - 40px);
-            max-width: var(--container);
-            margin: 0 auto;
-        }
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            background: rgba(21, 23, 24, 0.96);
-            color: #ffffff;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(14px);
-        }
-
-        .nav {
-            min-height: 96px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            min-width: 280px;
-        }
-
-        .brand img {
-            width: 64px;
-            height: 64px;
-            object-fit: contain;
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 6px;
-        }
-
-        .brand strong {
-            display: block;
-            font-size: 16.5px;
-            line-height: 1.2;
-            letter-spacing: 0.02em;
-        }
-
-        .brand span {
-            display: block;
-            margin-top: 4px;
-            color: rgba(255, 255, 255, 0.74);
-            font-size: 13px;
-            line-height: 1.3;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 4px;
-            margin-left: auto;
-        }
-
-        .nav-links a {
-            position: relative;
-            border-radius: 6px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 15.5px;
-            font-weight: 600;
-            padding: 12px 16px;
-            transition: background 160ms ease, color 160ms ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus-visible {
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-        }
-
-        .nav-links a.is-active {
-            color: #ffffff;
-        }
-
-        .nav-links a.is-active::after {
-            content: "";
-            position: absolute;
-            left: 14px;
-            right: 14px;
-            bottom: 4px;
-            height: 2px;
-            background: var(--green-soft);
-            border-radius: 2px;
-        }
-
-        .nav-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-height: 52px;
-            border-radius: 6px;
-            background: var(--green);
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 800;
-            padding: 14px 22px;
-            white-space: nowrap;
-            box-shadow: 0 12px 24px rgba(23, 114, 69, 0.32);
-            transition: background 160ms ease, transform 160ms ease;
-        }
-
-        .nav-cta:hover,
-        .nav-cta:focus-visible {
-            background: var(--green-dark);
-            transform: translateY(-1px);
-        }
-
-        .icon {
-            width: 18px;
-            height: 18px;
-            flex: 0 0 auto;
-            stroke-width: 2;
-        }
-
-        .hero {
-            position: relative;
-            overflow: hidden;
-            background: #1d211f;
-            color: #ffffff;
-            min-height: calc(100vh - 96px);
-            display: flex;
-            align-items: center;
-            padding: 80px 0 56px;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-            background-size: 64px 64px;
-            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.6), transparent 78%);
-            opacity: 0.38;
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 110px;
-            right: -240px;
-            width: min(560px, 46vw);
-            height: 56%;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(23, 114, 69, 0.04);
-            transform: skewX(-16deg);
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.72fr);
-            gap: 48px;
-            align-items: start;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            color: #dcebe1;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .eyebrow::before {
-            content: "";
-            width: 36px;
-            height: 2px;
-            background: var(--amber);
-        }
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin-top: 0;
-        }
-
-        h1 {
-            max-width: 880px;
-            margin-bottom: 22px;
-            font-size: clamp(36px, 4.6vw, 58px);
-            line-height: 1.1;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        .hero-lead {
-            max-width: 640px;
-            margin-bottom: 32px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: clamp(16px, 1.5vw, 18px);
-            line-height: 1.7;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 34px;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            max-width: 100%;
-            min-height: 48px;
-            border: 1px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 800;
-            padding: 12px 18px;
-            text-align: center;
-            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border 160ms ease;
-        }
-
-        .button:hover,
-        .button:focus-visible {
-            transform: translateY(-1px);
-        }
-
-        .button-primary {
-            background: var(--green);
-            color: #ffffff;
-            box-shadow: 0 14px 30px rgba(23, 114, 69, 0.26);
-        }
-
-        .button-primary:hover,
-        .button-primary:focus-visible {
-            background: var(--green-dark);
-        }
-
-        .button-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.32);
-            color: #ffffff;
-        }
-
-        .button-secondary:hover,
-        .button-secondary:focus-visible {
-            background: rgba(255, 255, 255, 0.16);
-        }
-
-        .button-light {
-            background: #ffffff;
-            border-color: var(--line);
-            color: var(--ink);
-        }
-
-        .button-light:hover,
-        .button-light:focus-visible {
-            border-color: var(--green);
-            box-shadow: 0 10px 24px rgba(20, 25, 23, 0.1);
-        }
-
-        .hero-proof {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            max-width: 740px;
-        }
-
-        .proof-item {
-            display: grid;
-            grid-template-columns: 38px minmax(0, 1fr);
-            gap: 12px;
-            align-items: start;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 16px;
-        }
-
-        .proof-icon {
-            width: 38px;
-            height: 38px;
-            display: grid;
-            place-items: center;
-            border-radius: 6px;
-            background: rgba(23, 114, 69, 0.18);
-            color: #9ed3ae;
-        }
-
-        .proof-icon .icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .proof-item strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #ffffff;
-            font-size: 15px;
-            line-height: 1.3;
-            font-weight: 700;
-        }
-
-        .proof-item span {
-            display: block;
-            color: rgba(255, 255, 255, 0.74);
-            font-size: 13.5px;
-            line-height: 1.5;
-        }
-
-        .hero-visual {
-            position: relative;
-            display: grid;
-            gap: 16px;
-        }
-
-        .hero-photo {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            box-shadow: var(--shadow);
-            min-height: 260px;
-            background: #0f1411;
-        }
-
-        .hero-photo svg {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-photo::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(13, 16, 14, 0) 40%, rgba(13, 16, 14, 0.55));
-            pointer-events: none;
-        }
-
-        .hero-photo-caption {
-            position: absolute;
-            left: 18px;
-            right: 18px;
-            bottom: 16px;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            color: #ffffff;
-        }
-
-        .hero-photo-caption strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .hero-photo-caption span {
-            display: block;
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 12.5px;
-            line-height: 1.4;
-        }
-
-        .hero-photo-caption .pill {
-            border-radius: 999px;
-            background: rgba(23, 114, 69, 0.85);
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 6px 10px;
-            white-space: nowrap;
-        }
-
-        .hero-panel {
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            border-radius: var(--radius);
-            background: rgba(255, 255, 255, 0.96);
-            color: var(--ink);
-            box-shadow: var(--shadow);
-            padding: 22px;
-        }
-
-        .hero-panel-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .hero-panel-title strong {
-            font-size: 16px;
-            line-height: 1.3;
-        }
-
-        .status {
-            border-radius: 999px;
-            background: var(--soft-green);
-            color: var(--green-dark);
-            font-size: 12px;
-            font-weight: 800;
-            padding: 6px 10px;
-            white-space: nowrap;
-        }
-
-        .brand-stack {
-            display: grid;
-            gap: 12px;
-            padding-top: 16px;
-        }
-
-        .brand-row {
-            display: grid;
-            grid-template-columns: 128px minmax(0, 1fr);
-            gap: 16px;
-            align-items: center;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #ffffff;
-            padding: 14px 16px;
-        }
-
-        .brand-logo {
-            min-height: 58px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .brand-logo img {
-            max-height: 46px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .brand-row p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 14.5px;
-            line-height: 1.55;
-        }
-
-        .brand-row strong {
-            display: block;
-            margin-bottom: 3px;
-            color: var(--ink);
-            font-size: 15.5px;
-            line-height: 1.35;
-            font-weight: 700;
-        }
-
-        section {
-            padding: 84px 0;
-        }
-
-        .section-soft {
-            background: var(--soft);
-        }
-
-        .section-dark {
-            background: var(--charcoal);
-            color: #ffffff;
-        }
-
-        .section-head {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 28px;
-            margin-bottom: 34px;
-        }
-
-        .section-kicker {
-            margin-bottom: 8px;
-            color: var(--green);
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .section-dark .section-kicker {
-            color: #9ed3ae;
-        }
-
-        h2 {
-            max-width: 720px;
-            margin-bottom: 0;
-            font-size: clamp(28px, 3.2vw, 40px);
-            line-height: 1.18;
-            font-weight: 700;
-            letter-spacing: -0.005em;
-        }
-
-        .section-copy {
-            max-width: 560px;
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        .section-dark .section-copy {
-            color: rgba(255, 255, 255, 0.78);
-        }
-
-        .section-side {
-            max-width: 360px;
-        }
-
-        .stat-cards {
-            display: grid;
-            gap: 10px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .stat-card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #ffffff;
-            padding: 14px 16px;
-            box-shadow: 0 1px 0 rgba(20, 25, 23, 0.03);
-        }
-
-        .stat-card strong {
-            display: block;
-            color: var(--green-dark);
-            font-size: 15.5px;
-            font-weight: 800;
-            letter-spacing: -0.005em;
-        }
-
-        .stat-card span {
-            display: block;
-            margin-top: 2px;
-            color: var(--muted);
-            font-size: 13.5px;
-            line-height: 1.5;
-        }
-
-        .section-dark .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.14);
-        }
-
-        .section-dark .stat-card strong {
-            color: #9ed3ae;
-        }
-
-        .section-dark .stat-card span {
-            color: rgba(255, 255, 255, 0.72);
-        }
-
-        .brand-cards,
-        .product-grid,
-        .benefit-grid,
-        .industry-grid,
-        .location-grid {
-            display: grid;
-            gap: 18px;
-        }
-
-        .brand-cards {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #ffffff;
-            padding: 24px;
-            box-shadow: 0 1px 0 rgba(20, 25, 23, 0.03);
-        }
-
-        .brand-card {
-            position: relative;
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            padding: 28px 24px 24px;
-            transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-        }
-
-        .brand-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--green);
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-
-        .brand-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 22px 48px rgba(20, 25, 23, 0.1);
-            border-color: var(--green);
-        }
-
-        .brand-card-logo {
-            min-height: 96px;
-            display: flex;
-            align-items: center;
-        }
-
-        .brand-card-logo img {
-            max-height: 66px;
-            width: auto;
-        }
-
-        .brand-card-focus {
-            margin: 0;
-            padding: 12px 14px;
-            border-radius: 6px;
-            background: var(--soft);
-            color: var(--muted);
-            font-size: 13.5px;
-            line-height: 1.55;
-        }
-
-        .brand-card-focus strong {
-            color: var(--ink);
-            font-weight: 700;
-        }
-
-        .mib-mark {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 8px;
-            color: var(--green);
-            font-weight: 800;
-        }
-
-        .mib-mark strong {
-            font-size: 34px;
-            line-height: 1;
-        }
-
-        .mib-mark span {
-            color: var(--muted);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .tag {
-            display: inline-flex;
-            width: fit-content;
-            border-radius: 999px;
-            background: var(--soft-green);
-            color: var(--green-dark);
-            font-size: 12px;
-            font-weight: 800;
-            padding: 6px 10px;
-        }
-
-        .brand-card h3,
-        .product-card h3,
-        .benefit-card h3,
-        .location-card h3,
-        .promo-content h3 {
-            margin: 0 0 10px;
-            font-size: 20px;
-            line-height: 1.3;
-            font-weight: 700;
-            letter-spacing: -0.005em;
-        }
-
-        .brand-card p,
-        .product-card p,
-        .benefit-card p,
-        .location-card p,
-        .promo-content p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 15.5px;
-            line-height: 1.65;
-        }
-
-        .brand-card .button,
-        .product-card .button {
-            margin-top: auto;
-            width: 100%;
-            min-height: 52px;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .brand-card .button-light,
-        .product-card .button-light {
-            background: #ffffff;
-            border: 1px solid var(--line);
-            color: var(--ink);
-            font-weight: 700;
-        }
-
-        .brand-card .button-light:hover,
-        .brand-card .button-light:focus-visible,
-        .product-card .button-light:hover,
-        .product-card .button-light:focus-visible {
-            background: var(--soft-green);
-            border-color: var(--green);
-            color: var(--green-dark);
-        }
-
-        .brand-card .button-outline {
-            background: #ffffff;
-            border: 1.5px solid var(--green);
-            color: var(--green-dark);
-        }
-
-        .brand-card .button-outline:hover,
-        .brand-card .button-outline:focus-visible {
-            background: var(--green);
-            color: #ffffff;
-            border-color: var(--green);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-            gap: 28px;
-            align-items: start;
-        }
-
-        .about-statement {
-            border-left: 4px solid var(--green);
-            padding-left: 22px;
-        }
-
-        .about-statement h2 {
-            margin-bottom: 16px;
-        }
-
-        .about-statement p {
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.75;
-        }
-
-        .benefit-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .benefit-card {
-            display: grid;
-            grid-template-columns: 48px minmax(0, 1fr);
-            gap: 16px;
-            align-items: start;
-            padding: 24px;
-        }
-
-        .benefit-icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            border-radius: 8px;
-            background: var(--soft-green);
-            color: var(--green-dark);
-        }
-
-        .benefit-icon .icon {
-            width: 22px;
-            height: 22px;
-        }
-
-        .product-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .product-card {
-            display: flex;
-            min-height: 100%;
-            flex-direction: column;
-            gap: 18px;
-            padding: 26px 24px 24px;
-            transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 22px 48px rgba(20, 25, 23, 0.1);
-            border-color: var(--green);
-        }
-
-        .product-card-logo {
-            min-height: 78px;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-card-logo img {
-            max-height: 56px;
-            width: auto;
-        }
-
-        .product-list {
-            display: grid;
-            gap: 8px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .product-list li {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: var(--ink);
-            font-size: 15px;
-            line-height: 1.55;
-            font-weight: 500;
-        }
-
-        .product-list li::before {
-            content: "";
-            width: 7px;
-            height: 7px;
-            flex: 0 0 auto;
-            border-radius: 999px;
-            background: var(--green);
-        }
-
-        .product-meta {
-            margin: 4px 0 0;
-            padding: 14px 16px;
-            border-radius: 6px;
-            background: var(--soft);
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .product-meta strong {
-            color: var(--ink);
-            font-weight: 700;
-        }
-
-        .promo {
-            display: grid;
-            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-            gap: 36px;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius);
-            background: linear-gradient(135deg, rgba(23, 114, 69, 0.08), rgba(255, 255, 255, 0.02));
-            padding: 36px;
-        }
-
-        .promo-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius);
-            background: #f5f7f4;
-            display: grid;
-            place-items: center;
-            min-height: 260px;
-            padding: 24px;
-        }
-
-        .promo-image::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(circle at 30% 30%, rgba(23, 114, 69, 0.08), transparent 60%),
-                linear-gradient(180deg, #f8faf7, #eef2ec);
-        }
-
-        .promo-image img,
-        .promo-image svg {
-            position: relative;
-            width: auto;
-            max-width: 80%;
-            max-height: 280px;
-            aspect-ratio: auto;
-            object-fit: contain;
-        }
-
-        .promo-image img {
-            mix-blend-mode: multiply;
-        }
-
-        .promo-content p {
-            color: rgba(255, 255, 255, 0.78);
-            font-size: 15.5px;
-            line-height: 1.7;
-        }
-
-        .promo-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 20px 0 24px;
-        }
-
-        .promo-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 999px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 7px 12px;
-        }
-
-        .promo-meta span::before {
-            content: "";
-            width: 5px;
-            height: 5px;
-            border-radius: 999px;
-            background: #9ed3ae;
-        }
-
-        .industry-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .industry-item {
-            display: grid;
-            grid-template-columns: 44px minmax(0, 1fr);
-            gap: 14px;
-            align-items: start;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #ffffff;
-            color: var(--ink);
-            padding: 20px;
-            text-align: left;
-        }
-
-        .industry-icon {
-            width: 44px;
-            height: 44px;
-            display: grid;
-            place-items: center;
-            border-radius: 6px;
-            background: var(--soft-green);
-            color: var(--green-dark);
-        }
-
-        .industry-icon .icon {
-            width: 20px;
-            height: 20px;
-        }
-
-        .industry-item strong {
-            display: block;
-            margin-bottom: 4px;
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.3;
-        }
-
-        .industry-item p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.55;
-        }
-
-        .contact-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.65fr);
-            gap: 28px;
-            align-items: start;
-        }
-
-        .contact-card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: #ffffff;
-            box-shadow: var(--shadow);
-            padding: 32px;
-        }
-
-        .contact-card+.location-grid,
-        .location-grid+.map-frame,
-        .contact-card+.map-frame {
-            margin-top: 22px;
-        }
-
-        .contact-card h3 {
-            margin: 0 0 10px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .contact-card>p {
-            color: var(--muted);
-            font-size: 15px;
-            line-height: 1.65;
-        }
-
-        .contact-actions {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin: 22px 0 24px;
-        }
-
-        .contact-actions .button {
-            width: 100%;
-            min-height: 52px;
-            padding-inline: 12px;
-        }
-
-        .contact-list {
-            display: grid;
-            gap: 14px;
-            margin: 0;
-            padding: 18px 0 0;
-            border-top: 1px solid var(--line);
-            list-style: none;
-        }
-
-        .contact-list li {
-            display: grid;
-            grid-template-columns: 26px minmax(0, 1fr);
-            gap: 12px;
-            color: var(--muted);
-            font-size: 14.5px;
-            line-height: 1.55;
-        }
-
-        .contact-list svg {
-            margin-top: 3px;
-            color: var(--green);
-        }
-
-        .contact-list strong {
-            display: block;
-            margin-bottom: 2px;
-            color: var(--ink);
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .inquiry-form {
-            display: grid;
-            gap: 14px;
-        }
-
-        .inquiry-form h3 {
-            margin: 0 0 4px;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .inquiry-form>p {
-            margin: 0 0 8px;
-            color: var(--muted);
-            font-size: 14.5px;
-        }
-
-        .field-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .field {
-            display: grid;
-            gap: 6px;
-        }
-
-        .field label {
-            color: var(--ink);
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .field input,
-        .field select,
-        .field textarea {
-            width: 100%;
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            background: #ffffff;
-            color: var(--ink);
-            font-size: 14.5px;
-            padding: 12px 14px;
-            outline: none;
-            transition: border 160ms ease, box-shadow 160ms ease;
-        }
-
-        .field input::placeholder,
-        .field textarea::placeholder {
-            color: #9aa19d;
-        }
-
-        .field input:focus,
-        .field select:focus,
-        .field textarea:focus {
-            border-color: var(--green);
-            box-shadow: 0 0 0 3px rgba(23, 114, 69, 0.12);
-        }
-
-        .field textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
-
-        .inquiry-form .button-primary {
-            min-height: 56px;
-            font-size: 15.5px;
-        }
-
-        .location-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            margin-top: 22px;
-        }
-
-        .location-card {
-            padding: 20px;
-        }
-
-        .map-frame {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: var(--soft);
-            margin-top: 22px;
-            box-shadow: 0 1px 0 rgba(20, 25, 23, 0.03);
-        }
-
-        .map-frame iframe {
-            display: block;
-            width: 100%;
-            min-height: 380px;
-            border: 0;
-        }
-
-        .map-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 14px 18px;
-            border-bottom: 1px solid var(--line);
-            background: #ffffff;
-        }
-
-        .map-header strong {
-            display: block;
-            font-size: 14.5px;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
-        .map-header span {
-            display: block;
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.4;
-        }
-
-        .map-header a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            border-radius: 6px;
-            color: var(--green-dark);
-            font-size: 13.5px;
-            font-weight: 700;
-            padding: 8px 12px;
-            background: var(--soft-green);
-        }
-
-        .map-header a:hover,
-        .map-header a:focus-visible {
-            background: var(--green);
-            color: #ffffff;
-        }
-
-        .map-header a .icon {
-            width: 14px;
-            height: 14px;
-        }
-
-        .site-footer {
-            background: var(--ink);
-            color: #ffffff;
-            padding: 64px 0 28px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(170px, 0.5fr) minmax(190px, 0.6fr) minmax(240px, 0.8fr);
-            gap: 40px;
-            padding-bottom: 36px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 18px;
-        }
-
-        .footer-brand img {
-            width: 68px;
-            height: 68px;
-            object-fit: contain;
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 6px;
-        }
-
-        .footer-brand strong {
-            display: block;
-            font-size: 16px;
-            line-height: 1.2;
-        }
-
-        .footer-brand>span {
-            display: block;
-        }
-
-        .footer-brand>span>span {
-            display: block;
-            margin-top: 4px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        .footer-grid p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .footer-list a,
-        .copyright {
-            color: rgba(255, 255, 255, 0.82);
-        }
-
-        .footer-heading {
-            margin: 0 0 14px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .footer-list {
-            display: grid;
-            gap: 11px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            font-size: 15px;
-        }
-
-        .footer-list a:hover,
-        .footer-list a:focus-visible {
-            color: #ffffff;
-        }
-
-        .footer-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 18px;
-            border-radius: 6px;
-            background: var(--green);
-            color: #ffffff;
-            font-size: 14.5px;
-            font-weight: 700;
-            padding: 12px 18px;
-            transition: background 160ms ease;
-        }
-
-        .footer-cta:hover,
-        .footer-cta:focus-visible {
-            background: var(--green-dark);
-            color: #ffffff;
-        }
-
-        .copyright {
-            margin: 22px 0 0;
-            font-size: 13.5px;
-        }
-
-        .floating-whatsapp {
-            position: fixed;
-            right: 22px;
-            bottom: 22px;
-            z-index: 30;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            min-height: 54px;
-            border-radius: 999px;
-            background: #25d366;
-            color: #07190f;
-            box-shadow: 0 18px 34px rgba(6, 48, 27, 0.22);
-            font-size: 15px;
-            font-weight: 800;
-            padding: 13px 18px;
-        }
-
-        .floating-whatsapp:hover,
-        .floating-whatsapp:focus-visible {
-            background: #20bd5a;
-        }
-
-        @media (max-width: 1020px) {
-            .nav {
-                flex-wrap: wrap;
-                padding: 12px 0;
-            }
-
-            .brand {
-                min-width: 0;
-            }
-
-            .nav-links {
-                order: 3;
-                width: 100%;
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: 4px;
-            }
-
-            .hero {
-                min-height: auto;
-            }
-
-            .hero-grid,
-            .about-grid,
-            .contact-layout,
-            .promo {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-            }
-
-            .hero-panel {
-                max-width: 680px;
-            }
-
-            .brand-cards,
-            .product-grid,
-            .industry-grid,
-            .location-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-
-            .section-head {
-                flex-wrap: wrap;
-            }
-
-            .section-side {
-                max-width: none;
-            }
-        }
-
-        @media (max-width: 720px) {
-            .container {
-                width: calc(100% - 28px);
-                max-width: var(--container);
-            }
-
-            .site-header {
-                position: relative;
-            }
-
-            .nav {
-                min-height: 0;
-            }
-
-            .brand img {
-                width: 52px;
-                height: 52px;
-            }
-
-            .brand strong {
-                font-size: 14.5px;
-            }
-
-            .nav-cta {
-                width: 100%;
-            }
-
-            .nav-links {
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 4px;
-                overflow-x: visible;
-            }
-
-            .nav-links a {
-                padding: 10px 10px;
-                text-align: center;
-            }
-
-            .hero {
-                padding: 50px 0 34px;
-            }
-
-            .hero::after {
-                display: none;
-            }
-
-            .hero-grid {
-                gap: 28px;
-            }
-
-            .actions {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-
-            .actions .button {
-                width: 100%;
-            }
-
-            h1 {
-                font-size: clamp(30px, 9vw, 38px);
-            }
-
-            .hero-proof,
-            .brand-cards,
-            .benefit-grid,
-            .product-grid,
-            .industry-grid,
-            .contact-actions,
-            .location-grid,
-            .field-row,
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .brand-row {
-                grid-template-columns: 104px minmax(0, 1fr);
-            }
-
-            section {
-                padding: 58px 0;
-            }
-
-            .section-head {
-                display: block;
-            }
-
-            .section-copy {
-                margin-top: 14px;
-            }
-
-            .card,
-            .contact-card,
-            .promo {
-                padding: 20px;
-            }
-
-            .floating-whatsapp {
-                right: 14px;
-                bottom: 14px;
-                min-height: 50px;
-                padding: 12px 14px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -1654,105 +105,9 @@
                 </div>
 
                 <aside class="hero-visual" aria-label="Industrial supply visual">
-                    <div class="hero-photo" role="img" aria-label="Warehouse and supply chain illustration">
-                        <svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="warehouseSky" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0" stop-color="#15302a"></stop>
-                                    <stop offset="1" stop-color="#0c1f17"></stop>
-                                </linearGradient>
-                                <linearGradient id="warehouseFloor" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0" stop-color="#1a2620"></stop>
-                                    <stop offset="1" stop-color="#0a1310"></stop>
-                                </linearGradient>
-                                <linearGradient id="drumFace" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0" stop-color="#1f8a55"></stop>
-                                    <stop offset="0.5" stop-color="#2aa569"></stop>
-                                    <stop offset="1" stop-color="#0d4f32"></stop>
-                                </linearGradient>
-                                <linearGradient id="drumFace2" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0" stop-color="#155a3a"></stop>
-                                    <stop offset="0.5" stop-color="#1f8a55"></stop>
-                                    <stop offset="1" stop-color="#0a3922"></stop>
-                                </linearGradient>
-                                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                    <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)"
-                                        stroke-width="1"></path>
-                                </pattern>
-                            </defs>
-                            <rect width="600" height="260" fill="url(#warehouseSky)"></rect>
-                            <rect y="240" width="600" height="140" fill="url(#warehouseFloor)"></rect>
-                            <rect width="600" height="380" fill="url(#grid)"></rect>
-                            <g opacity="0.55" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none">
-                                <path d="M40 60 L40 240"></path>
-                                <path d="M120 60 L120 240"></path>
-                                <path d="M200 60 L200 240"></path>
-                                <path d="M400 60 L400 240"></path>
-                                <path d="M480 60 L480 240"></path>
-                                <path d="M560 60 L560 240"></path>
-                                <path d="M30 60 L570 60"></path>
-                                <path d="M30 130 L570 130"></path>
-                                <path d="M30 200 L570 200"></path>
-                            </g>
-                            <g opacity="0.7">
-                                <rect x="60" y="100" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="140" y="100" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="220" y="100" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="60" y="170" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="140" y="170" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="220" y="170" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="420" y="100" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="500" y="100" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="420" y="170" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                                <rect x="500" y="170" width="40" height="22" rx="2" fill="#2a3530"></rect>
-                            </g>
-                            <g>
-                                <ellipse cx="220" cy="335" rx="100" ry="14" fill="rgba(0,0,0,0.45)"></ellipse>
-                                <rect x="146" y="246" width="148" height="80" rx="3" fill="#3a2a1a"></rect>
-                                <rect x="146" y="246" width="148" height="6" fill="#2a1d10"></rect>
-                                <line x1="180" y1="252" x2="180" y2="326" stroke="#2a1d10" stroke-width="1.2"></line>
-                                <line x1="220" y1="252" x2="220" y2="326" stroke="#2a1d10" stroke-width="1.2"></line>
-                                <line x1="260" y1="252" x2="260" y2="326" stroke="#2a1d10" stroke-width="1.2"></line>
-                            </g>
-                            <g>
-                                <rect x="158" y="178" width="50" height="68" rx="3" fill="url(#drumFace)"></rect>
-                                <rect x="158" y="184" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="158" y="222" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="166" y="194" width="34" height="22" rx="2" fill="#ffffff" opacity="0.95">
-                                </rect>
-                                <text x="183" y="208" text-anchor="middle" font-family="Inter, Arial, sans-serif"
-                                    font-size="9" font-weight="800" fill="#0d4f32">AHP</text>
-                                <rect x="216" y="178" width="50" height="68" rx="3" fill="url(#drumFace2)"></rect>
-                                <rect x="216" y="184" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="216" y="222" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="224" y="194" width="34" height="22" rx="2" fill="#ffffff" opacity="0.94">
-                                </rect>
-                                <text x="241" y="208" text-anchor="middle" font-family="Inter, Arial, sans-serif"
-                                    font-size="9" font-weight="800" fill="#0d4f32">AHP</text>
-                                <rect x="208" y="120" width="50" height="62" rx="3" fill="url(#drumFace)"></rect>
-                                <rect x="208" y="126" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="208" y="160" width="50" height="3" fill="rgba(0,0,0,0.25)"></rect>
-                                <rect x="216" y="134" width="34" height="22" rx="2" fill="#ffffff" opacity="0.94">
-                                </rect>
-                                <text x="233" y="148" text-anchor="middle" font-family="Inter, Arial, sans-serif"
-                                    font-size="9" font-weight="800" fill="#0d4f32">AHP</text>
-                            </g>
-                            <g opacity="0.85">
-                                <rect x="370" y="200" width="78" height="46" rx="4" fill="#1a2a22"></rect>
-                                <rect x="378" y="208" width="62" height="14" rx="2" fill="#0d4f32"></rect>
-                                <rect x="378" y="226" width="36" height="12" rx="2" fill="#2aa569"></rect>
-                                <circle cx="384" cy="252" r="6" fill="#0a1310" stroke="#2a3530" stroke-width="1.5">
-                                </circle>
-                                <circle cx="436" cy="252" r="6" fill="#0a1310" stroke="#2a3530" stroke-width="1.5">
-                                </circle>
-                                <rect x="448" y="216" width="14" height="22" rx="2" fill="#3a2a1a"></rect>
-                            </g>
-                            <g opacity="0.6">
-                                <circle cx="100" cy="50" r="2" fill="#2aa569"></circle>
-                                <circle cx="500" cy="50" r="2" fill="#2aa569"></circle>
-                            </g>
-                        </svg>
+                    <div class="hero-photo">
+                        <img src="assets/images/01-warehouse.jpg"
+                            alt="PT. Artha Hana Pranawa warehouse with industrial lubricant drums and storage racks">
                         <div class="hero-photo-caption">
                             <span>
                                 <strong>Industrial supply ready</strong>
@@ -1765,7 +120,7 @@
                     <div class="hero-panel" aria-label="Authorized brand summary">
                         <div class="hero-panel-title">
                             <strong>Authorized product categories</strong>
-                            <span class="status">3 brands</span>
+                            <span class="status">Since 2015</span>
                         </div>
                         <div class="brand-stack">
                             <div class="brand-row">
@@ -1805,8 +160,12 @@
                     <div class="section-side">
                         <ul class="stat-cards" aria-label="Quick facts">
                             <li class="stat-card">
+                                <strong>Established 2015</strong>
+                                <span>Decade of B2B distribution experience</span>
+                            </li>
+                            <li class="stat-card">
                                 <strong>3 Principal Brands</strong>
-                                <span>Petronas, Bosch, and MIB</span>
+                                <span>Petronas, Bosch, and MIB Chemicals</span>
                             </li>
                             <li class="stat-card">
                                 <strong>2 Warehouse Locations</strong>
@@ -1889,12 +248,13 @@
                     <p class="section-kicker">Company Focus</p>
                     <h2 id="about-title">Reliable supply support for companies with recurring procurement needs.</h2>
                     <p>
-                        Our mission is to deliver reliable industrial products with professional service, competitive
-                        pricing, and consistent support across recurring procurement needs.
+                        Operating since 2015, PT. Artha Hana Pranawa supplies industrial products with professional
+                        service, competitive pricing, and consistent support across recurring procurement cycles.
                     </p>
                     <p>
                         We focus on practical product recommendations, stock availability checks, and quotation support
-                        for daily operational needs.
+                        for daily operational needs across manufacturing, automotive, mining, and commercial
+                        facilities.
                     </p>
                 </div>
 
@@ -1941,6 +301,114 @@
             </div>
         </section>
 
+        <section aria-labelledby="operations-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="section-kicker">Operations</p>
+                        <h2 id="operations-title">A real distribution operation backed by warehouse, office, and stock
+                            on hand.</h2>
+                    </div>
+                    <p class="section-copy">
+                        Our day-to-day operations are run from a Jakarta head office and supported by warehouse
+                        facilities in Jakarta and Banjarbaru, ensuring stock availability and faster delivery for
+                        recurring procurement.
+                    </p>
+                </div>
+
+                <div class="benefit-grid">
+                    <article class="card credential-card">
+                        <div class="credential-image">
+                            <img src="assets/images/02-stock.jpg"
+                                alt="Stock of industrial drums, jerry cans, and batteries on warehouse pallets">
+                        </div>
+                        <div class="credential-body">
+                            <span class="tag">Stock On Hand</span>
+                            <h3>Ready stock for fast quotation</h3>
+                            <p>Drum lubricants, jerry cans, and battery inventory kept ready for industrial and
+                                commercial customers.</p>
+                            <ul class="credential-meta">
+                                <li>Drums, pails, jerry cans, cartons</li>
+                                <li>Quotation-based procurement support</li>
+                                <li>Stock availability confirmed by sales</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="card credential-card">
+                        <div class="credential-image">
+                            <img src="assets/images/04-office.jpg"
+                                alt="PT. Artha Hana Pranawa office workspace in Jakarta">
+                        </div>
+                        <div class="credential-body">
+                            <span class="tag">Head Office</span>
+                            <h3>Mampang Prapatan, Jakarta Selatan</h3>
+                            <p>Mutiara Building, 2nd floor #205. Sales, procurement, and customer support coordinated
+                                from a single Jakarta hub.</p>
+                            <ul class="credential-meta">
+                                <li>Working hours Monday to Friday, 08:30 - 17:00</li>
+                                <li>Email and phone inquiry desk</li>
+                                <li>WhatsApp sales channel for quick response</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-soft" aria-labelledby="credentials-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="section-kicker">Trust & Credentials</p>
+                        <h2 id="credentials-title">Authorized to distribute, registered to operate.</h2>
+                    </div>
+                    <p class="section-copy">
+                        PT. Artha Hana Pranawa works as an authorized distributor with registered legal status,
+                        ensuring buyers can procure with confidence and complete documentation.
+                    </p>
+                </div>
+
+                <div class="credentials-grid">
+                    <article class="credential-card">
+                        <div class="credential-image">
+                            <img src="assets/images/05-authorization.jpg"
+                                alt="Principal authorization certificate document">
+                        </div>
+                        <div class="credential-body">
+                            <span class="tag">Principal Authorization</span>
+                            <h3>Authorized Distributor since 2015</h3>
+                            <p>Working as authorized distributor for Petronas lubricants, Bosch battery and automotive
+                                products, and MIB specialty chemicals across Indonesia.</p>
+                            <ul class="credential-meta">
+                                <li>Petronas Lubricants supply category</li>
+                                <li>Bosch battery and automotive technology</li>
+                                <li>MIB specialty chemicals coverage</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="credential-card">
+                        <div class="credential-image">
+                            <img src="assets/images/06-legal.jpg"
+                                alt="Indonesian corporate legal documents including business registration and tax registration">
+                        </div>
+                        <div class="credential-body">
+                            <span class="tag">Company Legal</span>
+                            <h3>Registered Indonesian PT, established 2015</h3>
+                            <p>Operating as a registered Indonesian limited liability company with complete business
+                                identification and tax registration documents available on request.</p>
+                            <ul class="credential-meta">
+                                <li>NIB and NPWP available for verification</li>
+                                <li>Office and warehouse addresses on file</li>
+                                <li>Documentation ready for vendor onboarding</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section id="products" aria-labelledby="products-title">
             <div class="container">
                 <div class="section-head">
@@ -1952,6 +420,24 @@
                         Use the categories below as a starting point. Contact sales for quotation, stock availability,
                         product equivalents, and bulk supply requirements.
                     </p>
+                </div>
+
+                <div class="products-feature">
+                    <div class="products-feature-image">
+                        <img src="assets/images/03-products.jpg"
+                            alt="Curated lineup of industrial products including jerry can, lubricant bottle, drum, and battery">
+                    </div>
+                    <div class="products-feature-body">
+                        <h3>Lubricants, batteries, and specialty chemicals in one supply line.</h3>
+                        <p>From 25-liter jerry cans and 1-liter lubricant bottles to 200-liter drums and commercial
+                            batteries, our product range is built around real industrial procurement needs.</p>
+                        <ul class="products-feature-tags" aria-label="Available formats">
+                            <li>200 L drums</li>
+                            <li>25 L jerry cans</li>
+                            <li>1 L bottles</li>
+                            <li>Battery units</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="product-grid">
@@ -2083,6 +569,78 @@
             </div>
         </section>
 
+        <section aria-labelledby="coverage-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="section-kicker">Distribution Coverage</p>
+                        <h2 id="coverage-title">Supplying customers across Indonesia from Jakarta and Banjarbaru.</h2>
+                    </div>
+                    <p class="section-copy">
+                        Our distribution operates from Jakarta as head office and warehouse hub, with an additional
+                        warehouse in Banjarbaru to support customers in Kalimantan and surrounding regions.
+                    </p>
+                </div>
+
+                <div class="coverage-grid">
+                    <div class="coverage-visual">
+                        <img src="assets/images/08-distribution.jpg"
+                            alt="Indonesian distribution coverage map highlighting Jakarta and Banjarbaru hubs">
+                        <div class="coverage-caption">
+                            <span>
+                                <strong>Two distribution hubs</strong>
+                                <span>Jakarta and Banjarbaru ready stock</span>
+                            </span>
+                            <span class="pill">Nationwide</span>
+                        </div>
+                    </div>
+                    <div class="coverage-info">
+                        <h3>Active distribution hubs</h3>
+                        <p>Combining a Jakarta head office and warehouse with a Banjarbaru warehouse gives faster
+                            delivery for industrial, automotive, and mining customers across multiple regions.</p>
+                        <ul class="coverage-list">
+                            <li>
+                                <span class="icon-wrap">
+                                    <i data-lucide="building-2" class="icon" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>Jakarta head office and warehouse</strong>
+                                    <span>Mampang Prapatan and Jagakarsa, Jakarta Selatan</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon-wrap">
+                                    <i data-lucide="warehouse" class="icon" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>Banjarbaru warehouse</strong>
+                                    <span>Kalimantan Selatan distribution support</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon-wrap">
+                                    <i data-lucide="truck" class="icon" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>Delivery coordination</strong>
+                                    <span>Quotation includes stock and delivery options</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="icon-wrap">
+                                    <i data-lucide="package" class="icon" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>Recurring procurement support</strong>
+                                    <span>Industrial, automotive, mining, and commercial customers</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="industries" class="section-soft" aria-labelledby="industries-title">
             <div class="container">
                 <div class="section-head">
@@ -2094,6 +652,10 @@
                         PT. AHP serves companies that need dependable supply channels, fast response, and practical
                         product guidance.
                     </p>
+                </div>
+                <div class="industries-banner" aria-hidden="true">
+                    <img src="assets/images/09-industries.jpg"
+                        alt="Industries served including manufacturing, automotive, mining, logistics, construction, and facility management">
                 </div>
                 <div class="industry-grid">
                     <article class="industry-item">
@@ -2357,60 +919,8 @@
         Chat Sales
     </a>
 
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script>
-        if (window.lucide) {
-            window.lucide.createIcons();
-        }
-
-        document.getElementById("inquiry-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            var form = event.currentTarget;
-            var name = form.elements.name.value.trim();
-            var company = form.elements.company.value.trim();
-            var email = form.elements.email.value.trim();
-            var category = form.elements.category.value.trim();
-            var quantity = form.elements.quantity.value.trim();
-            var delivery = form.elements.delivery.value.trim();
-            var message = form.elements.message.value.trim();
-            var subject = encodeURIComponent("Product inquiry from " + (company || name));
-            var body = encodeURIComponent(
-                "Name: " + name + "\n" +
-                "Company: " + (company || "-") + "\n" +
-                "Email: " + email + "\n" +
-                "Product category: " + (category || "-") + "\n" +
-                "Quantity / volume: " + (quantity || "-") + "\n" +
-                "Delivery location: " + (delivery || "-") + "\n\n" +
-                "Product need:\n" + message
-            );
-
-            window.location.href = "mailto:sales@arthahanapranawa.com?subject=" + subject + "&body=" + body;
-        });
-
-        (function () {
-            var navLinks = document.querySelectorAll(".nav-links a[href^=\"#\"]");
-            if (!navLinks.length) return;
-            var sections = [];
-            navLinks.forEach(function (link) {
-                var id = link.getAttribute("href").slice(1);
-                var section = document.getElementById(id);
-                if (section) sections.push({ link: link, section: section });
-            });
-            if (!sections.length) return;
-            function update() {
-                var pos = window.scrollY + 140;
-                var current = sections[0];
-                for (var i = 0; i < sections.length; i++) {
-                    if (sections[i].section.offsetTop <= pos) current = sections[i];
-                }
-                navLinks.forEach(function (l) { l.classList.remove("is-active"); });
-                current.link.classList.add("is-active");
-            }
-            window.addEventListener("scroll", update, { passive: true });
-            update();
-        })();
-    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 </body>
 
 </html>
