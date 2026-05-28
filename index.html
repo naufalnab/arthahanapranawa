@@ -805,13 +805,17 @@
                 linear-gradient(180deg, #f8faf7, #eef2ec);
         }
 
-        .promo-image img {
+        .promo-image img,
+        .promo-image svg {
             position: relative;
             width: auto;
             max-width: 80%;
-            max-height: 240px;
+            max-height: 280px;
             aspect-ratio: auto;
             object-fit: contain;
+        }
+
+        .promo-image img {
             mix-blend-mode: multiply;
         }
 
@@ -1381,8 +1385,8 @@
             <div class="container hero-grid">
                 <div>
                     <p class="eyebrow">Authorized Distributor</p>
-                    <h1 id="hero-title">Industrial lubricants, batteries, and specialty chemicals for business
-                        operations.</h1>
+                    <h1 id="hero-title">Reliable industrial supply for lubricants, batteries, and specialty
+                        chemicals.</h1>
                     <p class="hero-lead">
                         PT. Artha Hana Pranawa supplies trusted products from Petronas, Bosch, and MIB for
                         manufacturing, automotive, mining, logistics, construction, and commercial facilities.
@@ -1400,16 +1404,31 @@
                     </div>
                     <div class="hero-proof" aria-label="Company strengths">
                         <div class="proof-item">
-                            <strong>Official brands</strong>
-                            <span>Petronas, Bosch, and MIB supply categories.</span>
+                            <span class="proof-icon">
+                                <i data-lucide="badge-check" class="icon" aria-hidden="true"></i>
+                            </span>
+                            <span>
+                                <strong>Official Brands</strong>
+                                <span>Petronas, Bosch, and MIB supply categories.</span>
+                            </span>
                         </div>
                         <div class="proof-item">
-                            <strong>B2B focused</strong>
-                            <span>Quotation and product support for operational needs.</span>
+                            <span class="proof-icon">
+                                <i data-lucide="briefcase-business" class="icon" aria-hidden="true"></i>
+                            </span>
+                            <span>
+                                <strong>B2B Focused</strong>
+                                <span>Quotation and product support for operations.</span>
+                            </span>
                         </div>
                         <div class="proof-item">
-                            <strong>Warehouse support</strong>
-                            <span>Jakarta and Banjarbaru distribution coverage.</span>
+                            <span class="proof-icon">
+                                <i data-lucide="warehouse" class="icon" aria-hidden="true"></i>
+                            </span>
+                            <span>
+                                <strong>Warehouse Support</strong>
+                                <span>Jakarta and Banjarbaru distribution coverage.</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -1452,10 +1471,17 @@
                         <p class="section-kicker">Authorized Brands</p>
                         <h2 id="brands-title">Clear product coverage from trusted principal brands.</h2>
                     </div>
-                    <p class="section-copy">
-                        Brand logos are supported with product context so buyers can quickly understand what PT. AHP
-                        supplies and which team to contact.
-                    </p>
+                    <div class="section-side">
+                        <p class="section-copy">
+                            Brand logos are supported with product context so buyers can quickly understand what PT.
+                            AHP supplies and which team to contact.
+                        </p>
+                        <ul class="section-stats" aria-label="Quick facts">
+                            <li>3 Principal Brands<span>Petronas, Bosch, MIB</span></li>
+                            <li>2 Warehouse Locations<span>Jakarta and Banjarbaru</span></li>
+                            <li>Quotation-based Procurement<span>Industrial and commercial supply</span></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="brand-cards">
@@ -1470,8 +1496,9 @@
                             <p>Industrial lubricants and functional fluids for manufacturing, fleet, heavy equipment,
                                 and plant maintenance requirements.</p>
                         </div>
-                        <a class="button button-light" href="/petronas" target="_blank" rel="noopener">
-                            View Product Range
+                        <a class="button button-light" href="#products">
+                            <i data-lucide="package-search" class="icon" aria-hidden="true"></i>
+                            Explore Products
                         </a>
                     </article>
 
@@ -1486,8 +1513,9 @@
                             <p>Battery and automotive technology products for vehicles, workshop operations, and
                                 commercial mobility support.</p>
                         </div>
-                        <a class="button button-light" href="/bosch" target="_blank" rel="noopener">
-                            View Product Range
+                        <a class="button button-light" href="#products">
+                            <i data-lucide="package-search" class="icon" aria-hidden="true"></i>
+                            Explore Products
                         </a>
                     </article>
 
@@ -1504,8 +1532,9 @@
                             <p>Specialty chemical solutions for cleaning, process support, facility maintenance, and
                                 other industrial applications.</p>
                         </div>
-                        <a class="button button-light" href="/mib" target="_blank" rel="noopener">
-                            View Product Range
+                        <a class="button button-light" href="#products">
+                            <i data-lucide="package-search" class="icon" aria-hidden="true"></i>
+                            Explore Products
                         </a>
                     </article>
                 </div>
@@ -1516,7 +1545,7 @@
             <div class="container about-grid">
                 <div class="about-statement">
                     <p class="section-kicker">Company Focus</p>
-                    <h2 id="about-title">Reliable industrial supply with responsive sales support.</h2>
+                    <h2 id="about-title">Reliable supply support for companies with recurring procurement needs.</h2>
                     <p>
                         Our mission is to deliver reliable industrial products with professional service, competitive
                         pricing, and consistent product quality across multiple industries.
@@ -1600,8 +1629,13 @@
                             <li>Compressor oil</li>
                             <li>Industrial grease</li>
                         </ul>
+                        <p class="product-meta"><strong>Suitable for:</strong> factories, fleets, workshops, and
+                            facility maintenance.</p>
                         <a class="button button-primary" href="https://api.whatsapp.com/send?phone=6282113176324"
-                            target="_blank" rel="noopener">Request Quotation</a>
+                            target="_blank" rel="noopener">
+                            <i data-lucide="message-circle" class="icon" aria-hidden="true"></i>
+                            Request Quotation
+                        </a>
                     </article>
 
                     <article class="card product-card">
@@ -1619,8 +1653,13 @@
                             <li>Workshop product support</li>
                             <li>Maintenance replacement needs</li>
                         </ul>
+                        <p class="product-meta"><strong>Suitable for:</strong> automotive workshops, fleet operators,
+                            and commercial vehicles.</p>
                         <a class="button button-primary" href="https://api.whatsapp.com/send?phone=6282113176324"
-                            target="_blank" rel="noopener">Ask Availability</a>
+                            target="_blank" rel="noopener">
+                            <i data-lucide="message-circle" class="icon" aria-hidden="true"></i>
+                            Ask Availability
+                        </a>
                     </article>
 
                     <article class="card product-card">
@@ -1640,8 +1679,13 @@
                             <li>Industrial maintenance support</li>
                             <li>Facility solutions</li>
                         </ul>
+                        <p class="product-meta"><strong>Available by quotation.</strong> Contact sales for stock and
+                            delivery.</p>
                         <a class="button button-primary" href="https://api.whatsapp.com/send?phone=6282113176324"
-                            target="_blank" rel="noopener">Contact Sales</a>
+                            target="_blank" rel="noopener">
+                            <i data-lucide="message-circle" class="icon" aria-hidden="true"></i>
+                            Contact Sales
+                        </a>
                     </article>
                 </div>
             </div>
@@ -1649,9 +1693,32 @@
 
         <section class="section-dark" aria-labelledby="promo-title">
             <div class="container promo">
-                <div class="promo-image">
-                    <img src="https://cdn1.site-media.eu/images/1920/7048897/Sale_Hand_Sanitizer2.jpg"
-                        alt="Hand Sanitizer Gel 25 Liter product">
+                <div class="promo-image" aria-hidden="true">
+                    <svg viewBox="0 0 240 280" role="img" aria-label="25 liter jerry can illustration">
+                        <defs>
+                            <linearGradient id="jerryBody" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#1f8a55"></stop>
+                                <stop offset="1" stop-color="#0d4f32"></stop>
+                            </linearGradient>
+                            <linearGradient id="jerryShine" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="rgba(255,255,255,0.35)"></stop>
+                                <stop offset="1" stop-color="rgba(255,255,255,0)"></stop>
+                            </linearGradient>
+                        </defs>
+                        <rect x="55" y="74" width="130" height="180" rx="14" fill="url(#jerryBody)"></rect>
+                        <rect x="62" y="82" width="40" height="160" rx="6" fill="url(#jerryShine)" opacity="0.55">
+                        </rect>
+                        <rect x="98" y="34" width="44" height="44" rx="6" fill="#0d4f32"></rect>
+                        <rect x="104" y="40" width="32" height="22" rx="3" fill="#177245"></rect>
+                        <rect x="148" y="50" width="24" height="32" rx="6" fill="#0d4f32"></rect>
+                        <rect x="74" y="116" width="92" height="60" rx="6" fill="#ffffff" opacity="0.94"></rect>
+                        <text x="120" y="146" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22"
+                            font-weight="800" fill="#0d4f32">25 L</text>
+                        <text x="120" y="166" text-anchor="middle" font-family="Inter, Arial, sans-serif"
+                            font-size="9.5" font-weight="700" fill="#177245" letter-spacing="2">HAND SANITIZER</text>
+                        <rect x="74" y="190" width="92" height="6" rx="3" fill="#ffffff" opacity="0.6"></rect>
+                        <rect x="74" y="204" width="68" height="6" rx="3" fill="#ffffff" opacity="0.4"></rect>
+                    </svg>
                 </div>
                 <div class="promo-content">
                     <p class="section-kicker">Ready Stock</p>
@@ -1687,12 +1754,60 @@
                     </p>
                 </div>
                 <div class="industry-grid">
-                    <div class="industry-item">Manufacturing</div>
-                    <div class="industry-item">Automotive</div>
-                    <div class="industry-item">Mining</div>
-                    <div class="industry-item">Logistics</div>
-                    <div class="industry-item">Construction</div>
-                    <div class="industry-item">Facility Management</div>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="factory" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Manufacturing</strong>
+                            <p>Lubricants and specialty chemicals for production lines and maintenance needs.</p>
+                        </div>
+                    </article>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="car" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Automotive</strong>
+                            <p>Battery, engine oil, and workshop supply for vehicle service operations.</p>
+                        </div>
+                    </article>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="hammer" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Mining</strong>
+                            <p>Heavy equipment lubricants and functional fluids for site operations.</p>
+                        </div>
+                    </article>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="truck" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Logistics</strong>
+                            <p>Battery and fluid supply for fleet operations and commercial vehicles.</p>
+                        </div>
+                    </article>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="hard-hat" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Construction</strong>
+                            <p>Lubricants and chemicals for construction equipment and site maintenance.</p>
+                        </div>
+                    </article>
+                    <article class="industry-item">
+                        <span class="industry-icon">
+                            <i data-lucide="building-2" class="icon" aria-hidden="true"></i>
+                        </span>
+                        <div>
+                            <strong>Facility Management</strong>
+                            <p>Cleaning and specialty chemicals for office, commercial, and facility upkeep.</p>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1777,26 +1892,50 @@
 
                     <form class="contact-card inquiry-form" id="inquiry-form">
                         <h3>Send Product Inquiry</h3>
-                        <div class="field">
-                            <label for="name">Name</label>
-                            <input id="name" name="name" autocomplete="name" required>
-                        </div>
-                        <div class="field">
-                            <label for="company">Company</label>
-                            <input id="company" name="company" autocomplete="organization">
+                        <p>Add product, quantity, and delivery details so sales can respond faster.</p>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="company">Company</label>
+                                <input id="company" name="company" autocomplete="organization">
+                            </div>
                         </div>
                         <div class="field">
                             <label for="email">Email</label>
                             <input id="email" name="email" type="email" autocomplete="email" required>
                         </div>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="category">Product Category</label>
+                                <select id="category" name="category">
+                                    <option value="">Select category</option>
+                                    <option>Petronas Lubricants</option>
+                                    <option>Bosch Battery & Automotive</option>
+                                    <option>MIB Specialty Chemicals</option>
+                                    <option>Hand Sanitizer</option>
+                                    <option>Other / Multiple</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="quantity">Quantity / Volume</label>
+                                <input id="quantity" name="quantity" placeholder="e.g. 5 drums, 200 L">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="delivery">Delivery Location</label>
+                            <input id="delivery" name="delivery" placeholder="e.g. Jakarta, Banjarbaru, project site">
+                        </div>
                         <div class="field">
                             <label for="message">Product Need</label>
                             <textarea id="message" name="message" required
-                                placeholder="Example: Petronas hydraulic oil, 5 drums, delivery to Jakarta"></textarea>
+                                placeholder="Example: Petronas hydraulic oil HLP 68, 5 drums, delivery to Jakarta warehouse."></textarea>
                         </div>
                         <button class="button button-primary" type="submit">
                             <i data-lucide="send" class="icon" aria-hidden="true"></i>
-                            Email Inquiry
+                            Send Email Inquiry
                         </button>
                     </form>
                 </div>
@@ -1839,6 +1978,11 @@
                                 rel="noopener">WhatsApp Sales</a></li>
                         <li>Jakarta Selatan, Indonesia</li>
                     </ul>
+                    <a class="footer-cta" href="https://api.whatsapp.com/send?phone=6282113176324" target="_blank"
+                        rel="noopener">
+                        <i data-lucide="message-circle" class="icon" aria-hidden="true"></i>
+                        Get Quotation
+                    </a>
                 </div>
             </div>
             <p class="copyright">Copyright 2026 PT. Artha Hana Pranawa. All rights reserved.</p>
@@ -1864,12 +2008,18 @@
             var name = form.elements.name.value.trim();
             var company = form.elements.company.value.trim();
             var email = form.elements.email.value.trim();
+            var category = form.elements.category.value.trim();
+            var quantity = form.elements.quantity.value.trim();
+            var delivery = form.elements.delivery.value.trim();
             var message = form.elements.message.value.trim();
             var subject = encodeURIComponent("Product inquiry from " + (company || name));
             var body = encodeURIComponent(
                 "Name: " + name + "\n" +
                 "Company: " + (company || "-") + "\n" +
-                "Email: " + email + "\n\n" +
+                "Email: " + email + "\n" +
+                "Product category: " + (category || "-") + "\n" +
+                "Quantity / volume: " + (quantity || "-") + "\n" +
+                "Delivery location: " + (delivery || "-") + "\n\n" +
                 "Product need:\n" + message
             );
 
