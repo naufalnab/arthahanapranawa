@@ -1070,42 +1070,40 @@ h2 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.industries-banner {
-    position: relative;
-    margin-bottom: 24px;
+.industry-item {
     overflow: hidden;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     background: #ffffff;
+    color: var(--ink);
+    text-align: left;
     box-shadow: 0 1px 0 rgba(20, 25, 23, 0.03);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.industries-banner img {
+.industry-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.industry-photo {
     display: block;
     width: 100%;
-    height: 220px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-.industries-banner::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(245, 247, 244, 0.4));
-    pointer-events: none;
+.industry-item:hover .industry-photo {
+    transform: scale(1.04);
 }
 
-.industry-item {
+.industry-body {
     display: grid;
     grid-template-columns: 44px minmax(0, 1fr);
     gap: 14px;
     align-items: start;
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: #ffffff;
-    color: var(--ink);
     padding: 20px;
-    text-align: left;
 }
 
 .industry-icon {
@@ -1937,10 +1935,6 @@ h2 {
 
     .products-feature-body h3 {
         font-size: 19px;
-    }
-
-    .industries-banner img {
-        height: 160px;
     }
 
     .brand-row {
