@@ -1089,6 +1089,7 @@ h2 {
 .industry-photo {
     display: block;
     width: 100%;
+    height: auto;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     transition: transform 0.5s ease;
